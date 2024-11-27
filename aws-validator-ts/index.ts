@@ -76,7 +76,7 @@ function isValidName(name: string): name is NetworkName {
   return Object.prototype.hasOwnProperty.call(networkOptions, name);
 }
 
-const networkName = solanaConfig.get("network") ?? "devnet";
+const networkName = solanaConfig.get("network") ?? "testnet";
 
 if (!isValidName(networkName)) {
   throw new Error(`unknown Solana network '${networkName}' specified!`);
