@@ -151,6 +151,7 @@ for node in nodes:
                                 amount=150,
                                 opts=pulumi.ResourceOptions(depends_on=([vote_account])))
 
+pulumi.export("nodes_name", [x.name for x in all_nodes])
 pulumi.export("nodes_public_ip", [x.instance.public_ip for x in all_nodes])
 pulumi.export("nodes_private_key", [
               x.ssh_key.private_key_openssh for x in all_nodes])
