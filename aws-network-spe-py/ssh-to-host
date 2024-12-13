@@ -7,7 +7,7 @@ list_nodes() {
     exit 0
 }
 
-if [ "$#" -eq 0 ]; then
+if [[ "$#" -eq 0 ]]; then
     echo "Usage: $0 <node-index> [command]"
     echo "Available nodes:"
     list_nodes
