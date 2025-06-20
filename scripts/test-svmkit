@@ -273,7 +273,7 @@ step::100::test-aws-network-spe-py() {
     )
 }
 
-step::110::test-gcp-network-spe-ts() {
+step::200::test-gcp-network-spe-ts() {
 
     (
 	gcloud::check_auth
@@ -304,7 +304,7 @@ step::140::test-aws-validator-xen-ts() {
     )
 }
 
-step::150::test-gcp-validator-agave-ts() {
+step::210::test-gcp-validator-agave-ts() {
     (
 	gcloud::check_auth
 	
