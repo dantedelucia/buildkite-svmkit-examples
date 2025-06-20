@@ -339,7 +339,7 @@ done < <(
 
 # 2) Decide what to run
 if (( $# > 0 )); then
-  echo "Steps: $@";
+  log::info "Steps: $@";
   for step_name in "$@"; do
     fn="${_step_map[$step_name]:-}"
     if [[ -n "$fn" ]]; then
