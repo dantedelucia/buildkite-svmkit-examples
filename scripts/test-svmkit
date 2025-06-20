@@ -331,6 +331,8 @@ while read -r fn; do
   name="${fn#step::*::}"           # strip "step::<digits>::"
   _step_map["$name"]="$fn"         # map "foo-bar" → "step::100::foo-bar"
   _valid_steps+=( "$name" )
+  log::info "Step: $name_";
+  
 done < <(
   declare -F        |  # list all functions
   awk '{print $3}'  |
@@ -339,7 +341,6 @@ done < <(
 
 # 2) Decide what to run
 if (( $# > 0 )); then
-  log::info "Steps: $@";
   for step_name in "$@"; do
     fn="${_step_map[$step_name]:-}"
     if [[ -n "$fn" ]]; then
@@ -356,5 +357,6 @@ if (( $# > 0 )); then
   done
 else
   # no args: run all steps in order
+  log::info "All Steps: $_step_map";    
   steps::run step
 fi
