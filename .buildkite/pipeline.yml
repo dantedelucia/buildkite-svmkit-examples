@@ -1,0 +1,11 @@
+steps:
+  - label: ":rocket: Run test-svmkit"
+    commands:
+      - chmod +x ./test-svmkit
+      - ./test-svmkit
+    env:
+      PULUMI_ACCESS_TOKEN: "${PULUMI_ACCESS_TOKEN}"
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+      AWS_DEFAULT_REGION: "us-west-2"          # or whatever region you use
+#      PULUMI_BACKEND_URL: "s3://my-pulumi-state" # if not using Pulumi Cloud
