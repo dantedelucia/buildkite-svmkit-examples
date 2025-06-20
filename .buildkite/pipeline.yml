@@ -1,8 +1,8 @@
 steps:
   - label: ":rocket: Run test-svmkit"
     commands:
-      - chmod +x ./test-svmkit
-      - ./test-svmkit
+      - chmod +x ./scripts/test-svmkit
+      - ./scripts/test-svmkit
     env:
       PULUMI_ACCESS_TOKEN: "${PULUMI_ACCESS_TOKEN}"
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
