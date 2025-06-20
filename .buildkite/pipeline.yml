@@ -3,7 +3,7 @@ steps:
     commands:
       - git clone https://github.com/abklabs/svmkit ./svmkit
       - git clone https://github.com/abklabs/pulumi-svmkit ./pulumi-svmkit
-      - git clone https://github.com/dantedelucia/svmkit-examples ./svmkit-examples
+      - git clone https://github.com/dantedelucia/buildkit-svmkit-examples ./svmkit-examples
 
       - chmod +x ./scripts/test-svmkit
       - ./scripts/test-svmkit
