@@ -331,7 +331,7 @@ while read -r fn; do
   name="${fn#step::*::}"           # strip "step::<digits>::"
   _step_map["$name"]="$fn"         # map "foo-bar" → "step::100::foo-bar"
   _valid_steps+=( "$name" )
-  log::info "Step: $name_";
+  log::info "Step: $name";
   
 done < <(
   declare -F        |  # list all functions
