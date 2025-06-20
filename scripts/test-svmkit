@@ -225,6 +225,7 @@ example::test() {
 	    "$cleanup"
 	fi
 	log::info "PASS ${FUNCNAME[1]}"
+	return 0
     )
 }
 
@@ -273,7 +274,6 @@ step::100::test-aws-network-spe-py() {
 }
 
 step::110::test-gcp-network-spe-ts() {
-    "$BRING_UP_STACK" || return 0
 
     (
 	gcloud::check_auth
@@ -357,6 +357,5 @@ if (( $# > 0 )); then
   done
 else
   # no args: run all steps in order
-  log::info "All Steps: $_step_map";    
   steps::run step
 fi
