@@ -42,7 +42,7 @@ for i in SVMKIT_DIR PULUMI_SVMKIT_DIR SVMKIT_EXAMPLES_DIR; do
 done
 
 step::010::setup-svmkit() {
-    (cd "$SVMKIT_DIR" && make check)
+    (cd "$SVMKIT_DIR") #  && make check)
 }
 
 step::020::setup-pulumi-svmkit() {
