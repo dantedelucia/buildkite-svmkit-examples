@@ -4,11 +4,11 @@
 source "$SCRIPTDIR/lib.opsh"
 
 step::000::checkout-staging() {
-	STAGING_DIR=$(checkout-staging pre-commit)
+  STAGING_DIR=$(checkout-staging pre-commit)
 }
 
 step::010::check-source() {
-	(cd "$STAGING_DIR" && make check)
+  (cd "$STAGING_DIR" && make check)
 }
 
 steps::run step
