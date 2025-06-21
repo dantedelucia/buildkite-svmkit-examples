@@ -26,8 +26,6 @@ steps:
     plugins:
       - artifacts:
           download:
-#            - "svmkit/**/*"
-#            - "pulumi-svmkit/sdk/**/*"
              - pulumi-svmkit/sdk/python/bin/dist/*
     commands:
       - git clone https://github.com/abklabs/svmkit     ./svmkit
@@ -46,3 +44,15 @@ steps:
       - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
       - chmod +x ./scripts/test-svmkit
       - ./scripts/test-svmkit test-aws-validator-fd-ts
+
+  - label: ":heavy_check_mark: Test aws-validator-agave-ts"
+    depends_on: ["setup"]
+    plugins:
+      - artifacts:
+          download:
+             - pulumi-svmkit/sdk/python/bin/dist/*
+    commands:
+      - git clone https://github.com/abklabs/svmkit     ./svmkit          
+      - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
+      - chmod +x ./scripts/test-svmkit
+      - ./scripts/test-svmkit test-aws-validator-agave-ts
