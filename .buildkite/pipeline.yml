@@ -2,45 +2,60 @@ steps:
   - key: setup
     label: ":rocket: Setup test-svmkit"
     commands:
-      - git clone https://github.com/abklabs/svmkit ./svmkit
+      - git clone https://github.com/abklabs/svmkit     ./svmkit
       - git clone https://github.com/abklabs/pulumi-svmkit ./pulumi-svmkit
       - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
       - chmod +x ./scripts/test-svmkit
       - ./scripts/test-svmkit --setup-only
+    artifact_paths:
+      - svmkit/**                
+      - pulumi-svmkit/**         
+      - svmkit-examples/**       
     env:
-      SVMKIT_DIR: "$PWD/svmkit"
-      PULUMI_SVMKIT_DIR: "$PWD/pulumi-svmkit"
-      SVMKIT_EXAMPLES_DIR: "$PWD/svmkit-examples"
-      PULUMI_ACCESS_TOKEN: "${PULUMI_ACCESS_TOKEN}"
-      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      SVMKIT_DIR:            "$PWD/svmkit"
+      PULUMI_SVMKIT_DIR:     "$PWD/pulumi-svmkit"
+      SVMKIT_EXAMPLES_DIR:   "$PWD/svmkit-examples"
+      PULUMI_ACCESS_TOKEN:   "${PULUMI_ACCESS_TOKEN}"
+      AWS_ACCESS_KEY_ID:     "${AWS_ACCESS_KEY_ID}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
-      AWS_DEFAULT_REGION: "us-west-2"
+      AWS_DEFAULT_REGION:    "us-west-2"
 
   - label: ":heavy_check_mark: Test aws-network-spe-py"
     depends_on: ["setup"]
+    plugins:
+      - artifacts#v2.1.0:
+          download:
+            - "svmkit/**"
+            - "pulumi-svmkit/**"
+            - "svmkit-examples/**"
     commands:
       - chmod +x ./scripts/test-svmkit
       - ./scripts/test-svmkit aws-network-spe-py
     env:
-      SVMKIT_DIR: "$PWD/svmkit"
-      PULUMI_SVMKIT_DIR: "$PWD/pulumi-svmkit"
-      SVMKIT_EXAMPLES_DIR: "$PWD/svmkit-examples"
-      PULUMI_ACCESS_TOKEN: "${PULUMI_ACCESS_TOKEN}"
-      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      SVMKIT_DIR:            "$PWD/svmkit"
+      PULUMI_SVMKIT_DIR:     "$PWD/pulumi-svmkit"
+      SVMKIT_EXAMPLES_DIR:   "$PWD/svmkit-examples"
+      PULUMI_ACCESS_TOKEN:   "${PULUMI_ACCESS_TOKEN}"
+      AWS_ACCESS_KEY_ID:     "${AWS_ACCESS_KEY_ID}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
-      AWS_DEFAULT_REGION: "us-west-2"
+      AWS_DEFAULT_REGION:    "us-west-2"
 
   - label: ":heavy_check_mark: Test aws-validator-fd-ts"
     depends_on: ["setup"]
+    plugins:
+      - artifacts#v2.1.0:
+          download:
+            - "svmkit/**"
+            - "pulumi-svmkit/**"
+            - "svmkit-examples/**"
     commands:
       - chmod +x ./scripts/test-svmkit
       - ./scripts/test-svmkit aws-validator-fd-ts
     env:
-      SVMKIT_DIR: "$PWD/svmkit"
-      PULUMI_SVMKIT_DIR: "$PWD/pulumi-svmkit"
-      SVMKIT_EXAMPLES_DIR: "$PWD/svmkit-examples"
-      PULUMI_ACCESS_TOKEN: "${PULUMI_ACCESS_TOKEN}"
-      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      SVMKIT_DIR:            "$PWD/svmkit"
+      PULUMI_SVMKIT_DIR:     "$PWD/pulumi-svmkit"
+      SVMKIT_EXAMPLES_DIR:   "$PWD/svmkit-examples"
+      PULUMI_ACCESS_TOKEN:   "${PULUMI_ACCESS_TOKEN}"
+      AWS_ACCESS_KEY_ID:     "${AWS_ACCESS_KEY_ID}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
-      AWS_DEFAULT_REGION: "us-west-2"
-
+      AWS_DEFAULT_REGION:    "us-west-2"
