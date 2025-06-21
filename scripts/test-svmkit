@@ -318,7 +318,23 @@ step::210::test-gcp-validator-agave-ts() {
 
 
 
- 
+# 0) Parse global flags
+SETUP_ONLY=false
+# build a new positional list without our flag
+_new_args=()
+for arg in "$@"; do
+  case "$arg" in
+    --setup-only)
+      SETUP_ONLY=true
+      ;;
+    *)
+      _new_args+=( "$arg" )
+      ;;
+  esac
+done
+# replace $@ with filtered args
+set -- "${_new_args[@]}"
+
 # ----------------------------------------------
 # Dispatch: run specific step(s) or all steps
 # ----------------------------------------------
@@ -340,7 +356,24 @@ done < <(
 )
 
 # 2) Decide what to run
-if (( $# > 0 )); then
+if $SETUP_ONLY; then
+  # run only steps with number < 100, in numeric order
+  log::info "▶ Running setup‐only (all step numbers <100)"
+  while IFS= read -r fn; do
+    num=${fn#step::}
+    num=${num%%::*}
+    if (( num < 100 )); then
+      name=${fn#step::*::}
+      log::info "  • $name"
+      $fn
+    fi
+  done < <(
+    declare -F | awk '{print $3}' \
+              | grep -E '^step::[0-9]+::' \
+              | sort -t: -k2,2n
+  )
+  exit 0
+elif (( $# > 0 )); then
   for step_name in "$@"; do
     fn="${_step_map[$step_name]:-}"
     if [[ -n "$fn" ]]; then
