@@ -30,6 +30,7 @@ steps:
 #            - "pulumi-svmkit/sdk/**/*"
              - pulumi-svmkit/sdk/python/bin/dist/*
     commands:
+      - git clone https://github.com/abklabs/svmkit     ./svmkit
       - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
       - chmod +x ./scripts/test-svmkit
       - ./scripts/test-svmkit test-aws-network-spe-py
@@ -41,6 +42,7 @@ steps:
           download:
              - pulumi-svmkit/sdk/python/bin/dist/*
     commands:
+      - git clone https://github.com/abklabs/svmkit     ./svmkit          
       - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
       - chmod +x ./scripts/test-svmkit
       - ./scripts/test-svmkit test-aws-validator-fd-ts
