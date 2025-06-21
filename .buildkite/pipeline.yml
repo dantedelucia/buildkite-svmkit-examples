@@ -16,23 +16,21 @@ steps:
       - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
       - chmod +x ./scripts/test-svmkit
       - ./scripts/test-svmkit --setup-only
-      - tar -zcf pulumi-svmkit/pulumi-sdk.tgz sdk
+      - tar -zcf pulumi-sdk.tgz pulumi-svmkit/sdk
       
     artifact_paths:
-#      - svmkit/**/*                
-#      - pulumi-svmkit/sdk/**/*
-      - pulumi-svmkit/sdk/python/bin/dist/*
-      - pulimi-svmkit/pulumi-sdk.tgz 
+      - pulumi-sdk.tgz
+      
   - label: ":heavy_check_mark: Test aws-network-spe-py"
     depends_on: ["setup"]
     plugins:
       - artifacts:
           download:
-             - pulumi-svmkit/pulumi-sdk.tgz
+             - pulumi-sdk.tgz
     commands:
       - git clone https://github.com/abklabs/svmkit     ./svmkit
       - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
-      - tar zxf pulumi-svmkit/pulumi-sdk.tgz
+      - tar zxf pulumi-sdk.tgz
       - ./scripts/test-svmkit test-aws-network-spe-py
 
   - label: ":heavy_check_mark: Test aws-validator-fd-ts"
@@ -40,11 +38,11 @@ steps:
     plugins:
       - artifacts:
           download:
-             - pulumi-svmkit/pulumi-sdk.tgz
+             - pulumi-sdk.tgz
     commands:
       - git clone https://github.com/abklabs/svmkit     ./svmkit          
       - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
-      - tar zxf pulumi-svmkit/pulumi-sdk.tgz      
+      - tar zxf pulumi-sdk.tgz      
       - ./scripts/test-svmkit test-aws-validator-fd-ts
 
   - label: ":heavy_check_mark: Test aws-validator-agave-ts"
@@ -52,9 +50,9 @@ steps:
     plugins:
       - artifacts:
           download:
-             - pulumi-svmkit/pulumi-sdk.tgz
+             - pulumi-sdk.tgz
     commands:
       - git clone https://github.com/abklabs/svmkit     ./svmkit          
       - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
-      - tar zxf pulumi-svmkit/pulumi-sdk.tgz      
+      - tar zxf pulumi-sdk.tgz      
       - ./scripts/test-svmkit test-aws-validator-agave-ts
