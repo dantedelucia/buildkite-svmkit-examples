@@ -17,16 +17,18 @@ steps:
       - chmod +x ./scripts/test-svmkit
       - ./scripts/test-svmkit --setup-only
     artifact_paths:
-      - svmkit/**/*                
-      - pulumi-svmkit/sdk/**/*
+#      - svmkit/**/*                
+#      - pulumi-svmkit/sdk/**/*
+      - pulumi-svmkit/sdk/python/bin/dist/*
 
   - label: ":heavy_check_mark: Test aws-network-spe-py"
     depends_on: ["setup"]
     plugins:
       - artifacts:
           download:
-            - "svmkit/**/*"
-            - "pulumi-svmkit/sdk/**/*"
+#            - "svmkit/**/*"
+#            - "pulumi-svmkit/sdk/**/*"
+             - pulumi-svmkit/sdk/python/bin/dist/*
     commands:
       - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
       - chmod +x ./scripts/test-svmkit
@@ -37,9 +39,7 @@ steps:
     plugins:
       - artifacts:
           download:
-            - "svmkit/**"
-            - "pulumi-svmkit/**/*"
-            - "svmkit-examples/**/*"
+             - pulumi-svmkit/sdk/python/bin/dist/*
     commands:
       - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
       - chmod +x ./scripts/test-svmkit
