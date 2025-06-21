@@ -31,7 +31,7 @@ steps:
             - "svmkit-examples/**"
     commands:
       - chmod +x ./scripts/test-svmkit
-      - ./scripts/test-svmkit aws-network-spe-py
+      - ./scripts/test-svmkit test-aws-network-spe-py
 
   - label: ":heavy_check_mark: Test aws-validator-fd-ts"
     depends_on: ["setup"]
@@ -43,4 +43,4 @@ steps:
             - "svmkit-examples/**"
     commands:
       - chmod +x ./scripts/test-svmkit
-      - ./scripts/test-svmkit aws-validator-fd-ts
+      - ./scripts/test-svmkit test-aws-validator-fd-ts
