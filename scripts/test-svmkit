@@ -165,21 +165,21 @@ example::test() {
 	local stack_name="test-$example"
 
 	# redirect output to file but display any INFO lines to console.
-        exec > >(tee "$example.log" | awk '
-          {
-           # Strip ANSI escape codes for pattern matching
-            line = $0
+        # exec > >(tee "$example.log" | awk '
+        #   {
+        #    # Strip ANSI escape codes for pattern matching
+        #     line = $0
 
-            gsub(/\x1b\[[0-9;]*m/, "", line)
-             # Skip lines starting with + or -
-            if (line ~ /^[[:space:]]*[+-]/) next
+        #     gsub(/\x1b\[[0-9;]*m/, "", line)
+        #      # Skip lines starting with + or -
+        #     if (line ~ /^[[:space:]]*[+-]/) next
     
-             # Print original (colorized) line if it matches INFO or WARN
-            if (line ~ /INFO|WARN|ERROR/) print
-          }
-        ') 2>&1
+        #      # Print original (colorized) line if it matches INFO or WARN
+        #     if (line ~ /INFO|WARN|ERROR/) print
+        #   }
+        # ') 2>&1
 	log::info "Starting test for $example"
- 	log::info "Logging $example output to '$example.log'"
+# 	log::info "Logging $example output to '$example.log'"
 
 	cd "$SVMKIT_EXAMPLES_DIR/$example"
 	log::info "Creating stack '$stack_name'"
@@ -202,7 +202,7 @@ example::test() {
 	# 
 	log::info "Running tests"
 	tmp=$(mktemp)
-	testing::run 2>&1 | tee "$tmp"
+	testing::run # 2>&1 | tee "$tmp"
 	if grep -q '^ERROR: ' "$tmp"; then
 	    log::error "❌ Some tests failed"
 	    exit 1
