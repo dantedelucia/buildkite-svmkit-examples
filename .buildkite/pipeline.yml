@@ -16,7 +16,7 @@ steps:
       - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
       - chmod +x ./scripts/test-svmkit
       - ./scripts/test-svmkit --setup-only
-      - tar -zcf pulumo-svmkit/pulumi-sdk.tgz sdk
+      - tar -zcf pulumi-svmkit/pulumi-sdk.tgz sdk
       
     artifact_paths:
 #      - svmkit/**/*                
