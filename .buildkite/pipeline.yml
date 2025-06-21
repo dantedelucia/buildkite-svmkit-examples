@@ -28,7 +28,6 @@ steps:
           download:
             - "svmkit/**"
             - "pulumi-svmkit/**"
-            - "svmkit-examples/**"
     commands:
       - git clone https://github.com/dantedelucia/buildkite-svmkit-examples.git ./svmkit-examples
       - chmod +x ./scripts/test-svmkit
