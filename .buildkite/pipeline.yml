@@ -1,3 +1,12 @@
+env:
+  SVMKIT_DIR:            "$PWD/svmkit"
+  PULUMI_SVMKIT_DIR:     "$PWD/pulumi-svmkit"
+  SVMKIT_EXAMPLES_DIR:   "$PWD/svmkit-examples"
+  PULUMI_ACCESS_TOKEN:   "${PULUMI_ACCESS_TOKEN}"
+  AWS_ACCESS_KEY_ID:     "${AWS_ACCESS_KEY_ID}"
+  AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+  AWS_DEFAULT_REGION:    "us-west-2"
+  
 steps:
   - key: setup
     label: ":rocket: Setup test-svmkit"
@@ -11,19 +20,11 @@ steps:
       - svmkit/**                
       - pulumi-svmkit/**         
       - svmkit-examples/**       
-    env:
-      SVMKIT_DIR:            "$PWD/svmkit"
-      PULUMI_SVMKIT_DIR:     "$PWD/pulumi-svmkit"
-      SVMKIT_EXAMPLES_DIR:   "$PWD/svmkit-examples"
-      PULUMI_ACCESS_TOKEN:   "${PULUMI_ACCESS_TOKEN}"
-      AWS_ACCESS_KEY_ID:     "${AWS_ACCESS_KEY_ID}"
-      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
-      AWS_DEFAULT_REGION:    "us-west-2"
 
   - label: ":heavy_check_mark: Test aws-network-spe-py"
     depends_on: ["setup"]
     plugins:
-      - artifacts#v2.1.0:
+      - artifacts:
           download:
             - "svmkit/**"
             - "pulumi-svmkit/**"
@@ -31,19 +32,11 @@ steps:
     commands:
       - chmod +x ./scripts/test-svmkit
       - ./scripts/test-svmkit aws-network-spe-py
-    env:
-      SVMKIT_DIR:            "$PWD/svmkit"
-      PULUMI_SVMKIT_DIR:     "$PWD/pulumi-svmkit"
-      SVMKIT_EXAMPLES_DIR:   "$PWD/svmkit-examples"
-      PULUMI_ACCESS_TOKEN:   "${PULUMI_ACCESS_TOKEN}"
-      AWS_ACCESS_KEY_ID:     "${AWS_ACCESS_KEY_ID}"
-      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
-      AWS_DEFAULT_REGION:    "us-west-2"
 
   - label: ":heavy_check_mark: Test aws-validator-fd-ts"
     depends_on: ["setup"]
     plugins:
-      - artifacts#v2.1.0:
+      - artifacts:
           download:
             - "svmkit/**"
             - "pulumi-svmkit/**"
@@ -51,11 +44,3 @@ steps:
     commands:
       - chmod +x ./scripts/test-svmkit
       - ./scripts/test-svmkit aws-validator-fd-ts
-    env:
-      SVMKIT_DIR:            "$PWD/svmkit"
-      PULUMI_SVMKIT_DIR:     "$PWD/pulumi-svmkit"
-      SVMKIT_EXAMPLES_DIR:   "$PWD/svmkit-examples"
-      PULUMI_ACCESS_TOKEN:   "${PULUMI_ACCESS_TOKEN}"
-      AWS_ACCESS_KEY_ID:     "${AWS_ACCESS_KEY_ID}"
-      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
-      AWS_DEFAULT_REGION:    "us-west-2"
